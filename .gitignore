@@ -1,0 +1,5 @@
+# Ignore pi-optimal folder and all its contents
+/pi-optimal/
+# Ignore all .pyc files and __pycache__ folders
+__pycache__/
+*.pyc
