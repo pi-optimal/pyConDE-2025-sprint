@@ -1,106 +1,78 @@
-# PyConDE & PyData 2025 - Pi_Optimal Sprint: Reward Function Engineering
+# pi_optimal Sprint @ PyConDE & PyData 2025
 
-Welcome to the hands-on coding session at PyConDE & PyData 2025! This sprint focuses on applying Pi_Optimal for supermarket inventory management using Reinforcement Learning, with a special emphasis on **reward function engineering**. Our goal is minimizing the waste of the products available in our supermarket.
+[![PyPI version](https://img.shields.io/pypi/v/pi-optimal)](https://pypi.org/project/pi-optimal)
+[![License](https://img.shields.io/github/license/pi-optimal/pi-optimal)](https://github.com/pi-optimal/pi-optimal/blob/main/LICENSE)
 
-## About Pi_Optimal
+Welcome to the **pi_optimal Hands‑On Sprint** on **Reward Function Engineering**! In this session, you'll learn how to apply reinforcement learning to supermarket inventory management—focusing on how different reward designs steer agent behavior.
 
-Pi_Optimal is a Python library that enables data scientists to apply Reinforcement Learning intuitively with only 7 lines of code. Key features:
-- Works on tabular data
-- Performs well with limited data
-- Requires no prior experience in Reinforcement Learning
+---
 
-## Sprint Goals
+## 🚀 Sprint Overview
 
-1. **Develop and customize reward functions** for supermarket inventory management simulation
-2. Apply Pi_Optimal to the simulation with different reward functions
-3. Analyze how different reward objectives affect learned policies
-4. Improve Pi_Optimal's usability by enhancing documentation and adding new models
+- **Goal**: Minimize waste & maximize profit by experimenting with reward functions in a perishable‐goods inventory simulation.
+- **Toolkit**: [pi_optimal](https://pi-optimal.com/docs/getting-started), our 7‑line RL library for tabular data.
+- **Environment**: A custom Gymnasium env (`SupermarketEnv` & `MultiProductSupermarketEnv`) simulating daily demand, holding costs, stockouts, and perishability.
 
-## Setup Instructions
+---
 
-### 1. Clone this Repository
+## 📦 Installation & Setup
 
-```bash
-git clone <repository-url>
-cd pyConDE-2025-sprint
+1. **Clone this repo**  
+   ```bash
+      git clone https://github.com/pi-optimal/pyConDE-2025-sprint.git
+      cd pyConDE-2025-sprint
+   ```
+
+2. **Install pi_optimal**  
+   We recommend Poetry for dependency management:
+   ```bash
+      pipx install poetry
+      git clone https://github.com/pi-optimal/pi-optimal.git
+      cd pi-optimal
+      poetry install
+      poetry shell
+   ```
+
+---
+
+## 📂 Project Structure
+```
+pyConDE-2025-sprint/
+├── supermarket_env.py           # Single and multi product Gym env
+├── multi_product_inventory_optimization.ipynb
+└── README.md
 ```
 
-### 2. Set Up Your Environment
+---
 
-We recommend using [Poetry](https://python-poetry.org/) for managing dependencies and environments, but also provide alternative options.
+## 🏁 Getting Started
+1. **Explore the notebook**  
+   Open multi_product_inventory_optimization.ipynb to see how to:
+   - Instantiate the env
+   - Define & swap reward functions
+   - Train agents with pi_optimal
+   - Compare performance metrics
+2. **Sprint tasks**
+   - Design a new reward function (e.g. penalize large orders, favor freshness)
+   - Evaluate how policies change under your reward design
+   - Contribute to docs or add a new sample model in pi_optimal
 
-```bash
-# Deactivate any active virtual environments (if applicable)
-# For conda: conda deactivate
+---
 
-# Install Poetry (if you haven't already)
-pipx install poetry
+## 🎯 Reward Function Engineering
 
-# Clone pi_optimal repository
-git clone https://github.com/pi-optimal/pi-optimal.git
-cd pi-optimal
+Reward functions are how we encode business objectives into RL. In this sprint you'll:
+- Review the default profit‐based reward
+- Create custom rewards (e.g., "freshness_bonus", "waste_penalty")
+- Analyze agent decisions and trade‑offs under each design
 
-# Install the project dependencies using Poetry
-poetry install
+---
 
+## 🔗 Resources
+- pi_optimal docs: https://pi-optimal.com/docs/getting-started
+- Gymnasium API: https://gymnasium.farama.org
+- Simulator: supermarket_env.py
+- Example notebook: multi_product_inventory_optimization.ipynb
 
-# Activate poetry environment
-poetry shell
+Happy coding, and may your rewards be well‑engineered! 🎉
 
-# If it doesn't appear in interpreter lists, add the output to the path
-poetry env info --path
-
-
-```
-
-## Project Structure
-
-- `supermarket_env.py`: Contains the Gym environment for inventory management simulation
-- `example_notebook.ipynb`: Jupyter notebook with examples of using Pi_Optimal with our simulation and different reward functions
-- `example_building_temperature_control.ipynb`: Additional example showing Pi_Optimal applied to building temperature control
-- `requirements.txt`: List of required packages
-
-## Getting Started
-
-1. Review the simulation environment in `supermarket_env.py`
-2. Open `example_notebook.ipynb` to see how to:
-   - Define and customize reward functions
-   - Use Pi_Optimal with different reward objectives
-   - Compare performance across reward functions
-3. Choose one of the sprint tasks to work on:
-   - Design a custom reward function for new business objectives
-   - Experiment with different Pi_Optimal configurations
-   - Contribute to Pi_Optimal documentation or features
-
-## Reward Function Engineering
-
-A key focus of this sprint is **reward function engineering** - the art of designing reward signals that guide reinforcement learning agents toward specific objectives.
-
-The project includes several reward function examples:
-- **Default**: Balanced profit-oriented approach
-- **Stockout-Averse**: Prioritizes customer satisfaction by heavily penalizing stockouts
-- **Cost-Efficient**: Focuses on minimizing operational costs
-- **Freshness-Focused**: Emphasizes product freshness and reduces waste
-
-You'll explore how modifying the reward function changes agent behavior and learn how to design rewards that align with specific business goals.
-
-## The Inventory Management Problem
-
-The supermarket inventory management problem involves:
-- Deciding daily order quantities for products
-- Balancing inventory costs against stockout risks
-- Considering lead times, demand uncertainty, and perishability
-
-The environment simulates:
-- Daily customer demand (stochastic)
-- Inventory holding costs
-- Stockout penalties
-- Ordering costs
-- Product perishability
-
-Your task is to apply Pi_Optimal with different reward functions to find optimal ordering policies for various business objectives.
-
-## Resources
-
-- [Pi_Optimal Documentation](https://pi-optimal.com/docs/getting-started)
-- [OpenAI Gym Documentation](https://gymnasium.farama.org)
