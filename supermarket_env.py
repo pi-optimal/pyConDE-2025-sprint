@@ -481,6 +481,7 @@ class MultiProductSupermarketEnv(gym.Env):
             self.episode_history[f'{product_name}_waste'] = []
             self.episode_history[f'{product_name}_stockouts'] = []
             self.episode_history[f'{product_name}_profit'] = []
+            self.episode_history[f'{product_name}_avg_shelf_duration'] = []  # Add product-specific shelf duration
         
         self.episode_history['total_profit'] = []
         self.episode_history['total_waste'] = []
@@ -536,6 +537,12 @@ class MultiProductSupermarketEnv(gym.Env):
             self.episode_history[f'{product_name}_stockouts'].append(info['stockouts'])
             self.episode_history[f'{product_name}_profit'].append(profit)
             
+            # Calculate and record product-specific average remaining shelf duration
+            inv = env.inventory
+            days = np.arange(len(inv))
+            product_avg_remain = (days * inv).sum() / inv.sum() if inv.sum() > 0 else 0.0
+            self.episode_history[f'{product_name}_avg_shelf_duration'].append(product_avg_remain)
+            
             # Store info
             infos[product_name] = info
             
@@ -543,7 +550,8 @@ class MultiProductSupermarketEnv(gym.Env):
         self.episode_history['total_profit'].append(total_profit)
         self.episode_history['total_waste'].append(total_waste)
         self.episode_history['total_stockouts'].append(total_stockouts)
-        
+
+
         # Sync day of week across all environments
         self.day_of_week = (self.day_of_week + 1) % 7
         for product_name in self.product_names:
