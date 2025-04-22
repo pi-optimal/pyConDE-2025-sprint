@@ -33,6 +33,11 @@ Welcome to the **pi_optimal Hands‑On Sprint** on **Reward Function Engineering
       poetry shell
    ```
 
+   But if there are issues, feel free to just use the pip install command:
+   ```bash
+      pip install pi_optimal
+   ```
+
 ---
 
 ## 📂 Project Structure
